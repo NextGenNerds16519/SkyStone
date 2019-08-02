@@ -110,10 +110,10 @@ public class HardwareStraferBasic {
 
     public void pivot(float power) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(-power);
 
     }
 
