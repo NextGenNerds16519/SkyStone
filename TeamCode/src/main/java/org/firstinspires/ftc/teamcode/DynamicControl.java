@@ -116,8 +116,10 @@ public class DynamicControl extends LinearOpMode {
                 bottomRightDrive.setPower(bottomRight);
                 topLeftDrive.setPower(topLeft);
                 bottomLeftDrive.setPower(bottomLeft);
-                telemetry.addData("Left Pow", bottomLeftDrive.getPower());
-                telemetry.addData("Right Pow", topRightDrive.getPower());
+                telemetry.addData("Top Left Pow", topLeftDrive.getPower());
+                telemetry.addData("Bottom Left Pow", bottomLeftDrive.getPower());
+                telemetry.addData("Top Right Pow", topRightDrive.getPower());
+                telemetry.addData("Bottom Right Pow", bottomRightDrive.getPower());
                 telemetry.update();
             }
         }
