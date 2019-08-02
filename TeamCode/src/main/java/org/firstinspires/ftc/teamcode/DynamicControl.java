@@ -60,7 +60,7 @@ public class DynamicControl extends LinearOpMode {
                         bottomLeft += -gamepad1.left_stick_x;
                     }
                 }
-                if (gamepad1.right_trigger == 0 || gamepad1.left_trigger != 0) {
+                if (gamepad1.right_trigger == 0 || gamepad1.left_trigger == 0) {
                     if (gamepad1.left_stick_x > 0) {
                         topRight += gamepad1.left_stick_x;
                         bottomRight += gamepad1.left_stick_x;
