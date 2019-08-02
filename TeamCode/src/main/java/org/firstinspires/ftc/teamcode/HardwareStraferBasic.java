@@ -59,11 +59,11 @@ public class HardwareStraferBasic {
 
         //
 
-        stopRobot();
+        stop();
 
     }
 
-    public void stopRobot() {
+    public void stop() {
 
         bottomLeftDrive.setPower(0);
         bottomRightDrive.setPower(0);
