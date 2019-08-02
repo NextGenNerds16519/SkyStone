@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,6 +9,7 @@ public class HardwareStraferBasic {
 
     public DcMotor bottomLeftDrive;
     public DcMotor bottomRightDrive;
+    public BNO055IMU imu;
     public DcMotor topLeftDrive;
     public DcMotor topRightDrive;
 
@@ -27,6 +29,7 @@ public class HardwareStraferBasic {
 
         bottomLeftDrive = map.dcMotor.get("bottomLeftDrive");
         bottomRightDrive = map.dcMotor.get("bottomRightDrive");
+        imu = map.get(BNO055IMU.class, "imu");
         topLeftDrive = map.dcMotor.get("topLeftDrive");
         topRightDrive = map.dcMotor.get("topRightDrive");
 
@@ -49,10 +52,14 @@ public class HardwareStraferBasic {
         topRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //set direction
-        bottomLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        bottomLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         bottomRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
-        topLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        topLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         topRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        //
+
+        stopRobot();
 
     }
 
@@ -67,37 +74,37 @@ public class HardwareStraferBasic {
 
     public void strafeLeft(float power) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(-power);
 
     }
 
     public void strafeRight(float power) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(power);
 
     }
 
     public void moveForward(float power) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(power);
 
     }
 
     public void moveBackward(float power) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(-power);
 
     }
 
