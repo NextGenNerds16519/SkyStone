@@ -23,6 +23,12 @@ public class NeilsTeleOpAttempt extends OpMode {
             robot.moveForward(gamepad1.right_trigger);
         } else if(gamepad1.left_trigger > 0){
             robot.moveBackward(gamepad1.left_trigger);
+        } else if(gamepad1.right_bumper){
+            robot.strafeRight((float)0.75);
+        } else if(gamepad1.left_bumper){
+            robot.strafeLeft((float)0.75);
+        } else if(gamepad1.left_stick_x != 0){
+            robot.pivot(gamepad1.left_stick_x);
         } else{
             robot.stop();
         }

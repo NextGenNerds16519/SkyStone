@@ -52,10 +52,10 @@ public class HardwareStraferBasic {
         topRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //set direction
-        bottomLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        bottomRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
-        topLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        topRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        bottomLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        bottomRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        topLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        topRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //
 
@@ -74,19 +74,19 @@ public class HardwareStraferBasic {
 
     public void strafeLeft(float power) {
 
-        bottomLeftDrive.setPower(-power);
-        bottomRightDrive.setPower(power);
-        topLeftDrive.setPower(power);
-        topRightDrive.setPower(-power);
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(power);
 
     }
 
     public void strafeRight(float power) {
 
-        bottomLeftDrive.setPower(power);
-        bottomRightDrive.setPower(-power);
-        topLeftDrive.setPower(-power);
-        topRightDrive.setPower(power);
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(-power);
 
     }
 
