@@ -1,9 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.graphics.drawable.GradientDrawable;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class HardwareStraferBasic {
 
@@ -12,6 +19,7 @@ public class HardwareStraferBasic {
     public BNO055IMU imu;
     public DcMotor topLeftDrive;
     public DcMotor topRightDrive;
+    public Orientation angle;
 
     private DcMotor.RunMode initialMode;
 
@@ -57,9 +65,13 @@ public class HardwareStraferBasic {
         topLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
         topRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        //
-
         stop();
+
+        //imu set up
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        angle = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
     }
 
