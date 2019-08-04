@@ -57,10 +57,10 @@ public class HardwareDynamicControl {
         topRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //set direction
-        bottomLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
-        bottomRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        topLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
-        topRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        bottomLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        bottomRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        topLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        topRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
 
         stop();
 
@@ -83,6 +83,15 @@ public class HardwareDynamicControl {
 
     public void strafeLeft(float power) {
 
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(-power);
+
+    }
+
+    public void strafeRight(float power) {
+
         bottomLeftDrive.setPower(power);
         bottomRightDrive.setPower(-power);
         topLeftDrive.setPower(-power);
@@ -90,11 +99,38 @@ public class HardwareDynamicControl {
 
     }
 
-    public void strafeRight(float power) {
+    public void strafeDiagonalLL(float power) {
 
-        bottomLeftDrive.setPower(-power);
+        bottomLeftDrive.setPower(0);
         bottomRightDrive.setPower(power);
         topLeftDrive.setPower(power);
+        topRightDrive.setPower(0);
+
+    }
+
+    public void strafeDiagonalRR(float power) {
+
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(0);
+
+    }
+
+    public void strafeDiagonalLR(float power) {
+
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
+        topRightDrive.setPower(power);
+
+    }
+
+    public void strafeDiagonalRL(float power) {
+
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
         topRightDrive.setPower(-power);
 
     }
