@@ -69,6 +69,10 @@ public class DynamicControlUpdated extends OpMode {
         if (gamepad1.right_trigger != 0 && gamepad1.left_bumper) {
             robot.strafeDiagonalRL(1);
         }
+        if (!gamepad1.right_bumper&&!gamepad1.left_bumper&&gamepad1.left_trigger==0&&gamepad1.right_trigger==0&&gamepad1.left_stick_x==0&&gamepad1.a){
+            //180 code here
+        }
+
         robot.topRightDrive.setPower(topRight);
         robot.bottomRightDrive.setPower(bottomRight);
         robot.topLeftDrive.setPower(topLeft);
