@@ -24,6 +24,11 @@ public class DynamicControlUpdated extends OpMode {
         topLeft = gamepad1.left_trigger - gamepad1.right_trigger;
         topRight = gamepad1.left_trigger - gamepad1.right_trigger;
         bottomRight = gamepad1.left_trigger - gamepad1.right_trigger;
+
+        if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.a) {
+            robot.turn180Code(1,180);
+        }
+
         if (gamepad1.right_trigger == 0 || gamepad1.left_trigger == 0) {
             if (gamepad1.left_stick_x > 0) {
                 topRight += gamepad1.left_stick_x;
@@ -53,7 +58,7 @@ public class DynamicControlUpdated extends OpMode {
                 robot.strafeLeft(1);
             }
             if (gamepad1.right_bumper) {
-               robot.strafeRight(1);
+                robot.strafeRight(1);
             }
         }
         if (gamepad1.left_trigger != 0 && gamepad1.left_bumper) {
@@ -68,9 +73,7 @@ public class DynamicControlUpdated extends OpMode {
         if (gamepad1.right_trigger != 0 && gamepad1.left_bumper) {
             robot.strafeDiagonalRL(1);
         }
-        if (!gamepad1.right_bumper&&!gamepad1.left_bumper&&gamepad1.left_trigger==0&&gamepad1.right_trigger==0&&gamepad1.left_stick_x==0&&gamepad1.a){
-            //180 code here
-        }
+
 
         robot.topRightDrive.setPower(topRight);
         robot.bottomRightDrive.setPower(bottomRight);

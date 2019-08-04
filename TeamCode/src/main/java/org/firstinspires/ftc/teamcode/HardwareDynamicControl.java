@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -135,7 +137,35 @@ public class HardwareDynamicControl {
 
     }
 
-    public void turn180Code(float power){
+    public void turnLeft(float power) {
+        bottomLeftDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(power);
+        bottomRightDrive.setPower(power);
+    }
+
+    public void turn180Code(float power, int distance) {
+        bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bottomRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        topLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        topRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        bottomLeftDrive.setTargetPosition(distance);
+        bottomRightDrive.setTargetPosition(distance);
+        topLeftDrive.setTargetPosition(distance);
+        topRightDrive.setTargetPosition(distance);
+
+        bottomLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        bottomRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        topLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        topRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        turnLeft(power);
+
+        while (bottomLeftDrive.isBusy() && topLeftDrive.isBusy() && bottomRightDrive.isBusy() && topRightDrive.isBusy()) {
+            //in case needed lol
+        }
+
 
     }
 
