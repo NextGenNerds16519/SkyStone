@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 @TeleOp(name = "DynamicControlUpdated", group = "")
 public class DynamicControlUpdated extends OpMode {
 
-    HardwareStraferBasic robot = new HardwareStraferBasic(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    HardwareDynamicControl robot = new HardwareDynamicControl(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     double topLeft = 0;
     double topRight = 0;
     double bottomLeft = 0;
