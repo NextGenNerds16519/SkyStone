@@ -32,6 +32,7 @@ public class NeilsTeleOpAttempt extends OpMode {
         } else if(gamepad1.left_stick_x != 0){
             robot.pivot(gamepad1.left_stick_x);
         }else if(gamepad1.a){
+            
             float targetAngle = robot.angle.firstAngle + 90;
             while(robot.angle.firstAngle != targetAngle){
                 robot.pivot((float)0.5);
