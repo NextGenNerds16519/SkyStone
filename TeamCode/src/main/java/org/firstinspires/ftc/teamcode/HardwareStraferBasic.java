@@ -71,6 +71,7 @@ public class HardwareStraferBasic {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        imu.initialize(parameters);
         angle = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
     }
@@ -82,6 +83,11 @@ public class HardwareStraferBasic {
         topLeftDrive.setPower(0);
         topRightDrive.setPower(0);
 
+    }
+
+    public float getAngle(){
+        angle = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        return angle.firstAngle;
     }
 
     public void strafeLeft(float power) {
