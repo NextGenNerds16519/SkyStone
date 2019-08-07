@@ -90,7 +90,7 @@ public class HardwareStrafer {
         return angle.firstAngle;
     }
 
-    public void strafeLeft(float power) {
+    public void strafeLeft(double power) {
 
         bottomLeftDrive.setPower(power);
         bottomRightDrive.setPower(-power);
@@ -99,7 +99,7 @@ public class HardwareStrafer {
 
     }
 
-    public void strafeRight(float power) {
+    public void strafeRight(double power) {
 
         bottomLeftDrive.setPower(-power);
         bottomRightDrive.setPower(power);
