@@ -183,6 +183,22 @@ public class HardwareStrafer {
 
     }
 
+    public void betterTurn(float power, float turn){
+        float leftpower= power;
+        float rightpower = power;
+        if (turn<0){
+            leftpower = leftpower+turn;
+            topLeftDrive.setPower(leftpower);
+            bottomLeftDrive.setPower(leftpower);
+        }
+
+        if (turn>0){
+            rightpower = rightpower-turn;
+            topRightDrive.setPower(rightpower);
+            bottomRightDrive.setPower(rightpower);
+        }
+    }
+
     public void turnLeft(int degrees) {
 
         bottomLeftDrive.setPower(0);
