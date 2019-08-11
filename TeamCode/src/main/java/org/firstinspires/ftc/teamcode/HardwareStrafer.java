@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.drawable.GradientDrawable;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -20,6 +21,12 @@ public class HardwareStrafer {
     public DcMotor topLeftDrive;
     public DcMotor topRightDrive;
     public Orientation angle;
+//    public int zAccumulated;
+//    public int heading;
+//    public int xVal, yVal, zVal;
+//    GyroSensor sensorGyro;
+//    ModernRoboticsI2cGyro mrGyro;
+
 
     private DcMotor.RunMode initialMode;
 
@@ -31,7 +38,7 @@ public class HardwareStrafer {
 
     }
 
-    public void init(HardwareMap aMap) {
+    public void init(HardwareMap aMap) /*throws InterruptedException*/{
 
         map = aMap;
 
@@ -65,7 +72,13 @@ public class HardwareStrafer {
         topLeftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
         topRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        stop();
+//        //gyro
+//        sensorGyro = map.gyroSensor.get("gyro");
+//        mrGyro = (ModernRoboticsI2cGyro) sensorGyro;
+//        mrGyro.calibrate();
+//        wait(4000)a;
+//
+//        stop();
 
         //imu set up
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -176,10 +189,10 @@ public class HardwareStrafer {
         power = power / 2;
         turn = turn / 2;
 
-        bottomLeftDrive.setPower(power+turn);
-        bottomRightDrive.setPower(power-turn);
-        topLeftDrive.setPower(power+turn);
-        topRightDrive.setPower(power-turn);
+        bottomLeftDrive.setPower(power + turn);
+        bottomRightDrive.setPower(power - turn);
+        topLeftDrive.setPower(power + turn);
+        topRightDrive.setPower(power - turn);
 
     }
 
@@ -199,23 +212,40 @@ public class HardwareStrafer {
         }
     }
 
-    public void turnLeft(int degrees) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
+//    public void turn180(float power,int target) throws InterruptedException{
+//        //setup
+//        target = target + mrGyro.getIntegratedZValue();
+//        zAccumulated = mrGyro.getIntegratedZValue();
+//        heading = 360 - mrGyro.getHeading();
+//
+//        if (heading==360){
+//            heading =0;
+//        }
+//
+//        xVal = mrGyro.rawX();
+//        yVal = mrGyro.rawY();
+//        zVal = mrGyro.rawZ();
+//
+//        //turn
+//        while (Math.abs(zAccumulated-target)>3) {
+//
+//            if (zAccumulated > target) {
+//                pivot(1);
+//            } else if (zAccumulated < target) {
+//                pivot(-1);
+//            }
+//            wait(3000);
+//        }
+//        stop();
+//        wait(1000);
+//
+//
+//    }
 
-    }
 
-    public void turnRight(int degrees) {
 
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
 
-    }
 
 }
 
