@@ -106,11 +106,11 @@ public class HardwareStrafer {
     public void turnAngle(float power, int degrees){
         float heading = getAngle();
         float target = heading + degrees;
-        while (Math.abs(heading-target)>3) {
+        while (Math.abs(getAngle()-target)>3) {
 
-            if (heading > target) {
+            if (getAngle() > target) {
                 pivot(power);
-            } else if (heading < target) {
+            } else if (getAngle() < target) {
                 pivot(-power);
             }
         }
