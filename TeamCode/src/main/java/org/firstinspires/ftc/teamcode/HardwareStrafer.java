@@ -103,8 +103,18 @@ public class HardwareStrafer {
         return angle.firstAngle;
     }
 
-    public void turn180Angle(float power, int angle){
+    public void turnAngle(float power, int degrees){
+        float heading = getAngle();
+        float target = heading + degrees;
+        while (Math.abs(heading-target)>3) {
 
+            if (heading > target) {
+                pivot(power);
+            } else if (heading < target) {
+                pivot(-power);
+            }
+        }
+        stop();
     }
 
     public void strafeLeft(double power) {
@@ -217,9 +227,9 @@ public class HardwareStrafer {
     }
 
 
-//    public void turn180Gyro(float power,int target) throws InterruptedException{
+//    public void turnGyro(float power,int angle) throws InterruptedException{
 //        //setup
-//        target = target + mrGyro.getIntegratedZValue();
+//        angle = angle + mrGyro.getIntegratedZValue();
 //        zAccumulated = mrGyro.getIntegratedZValue();
 //        heading = 360 - mrGyro.getHeading();
 //
@@ -234,9 +244,9 @@ public class HardwareStrafer {
 //        //turn
 //        while (Math.abs(zAccumulated-target)>3) {
 //
-//            if (zAccumulated > target) {
+//            if (zAccumulated > angle) {
 //                pivot(1);
-//            } else if (zAccumulated < target) {
+//            } else if (zAccumulated < angle) {
 //                pivot(-1);
 //            }
 //            wait(3000);
