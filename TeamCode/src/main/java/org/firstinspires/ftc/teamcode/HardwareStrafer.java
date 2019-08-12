@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+//import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.GyroSensor;
+//import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -101,6 +101,10 @@ public class HardwareStrafer {
     public float getAngle() {
         angle = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         return angle.firstAngle;
+    }
+
+    public void turn180Angle(float power, int angle){
+
     }
 
     public void strafeLeft(double power) {
@@ -213,7 +217,7 @@ public class HardwareStrafer {
     }
 
 
-//    public void turn180(float power,int target) throws InterruptedException{
+//    public void turn180Gyro(float power,int target) throws InterruptedException{
 //        //setup
 //        target = target + mrGyro.getIntegratedZValue();
 //        zAccumulated = mrGyro.getIntegratedZValue();
