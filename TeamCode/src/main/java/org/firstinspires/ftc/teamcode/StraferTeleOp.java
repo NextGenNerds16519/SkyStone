@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class StraferTeleOp extends OpMode {
 
     HardwareStrafer robot = new HardwareStrafer(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    public float turnVar = 0;
 
     @Override
     public void init(){
@@ -18,7 +17,7 @@ public class StraferTeleOp extends OpMode {
 
     @Override
     public void loop(){
-            turnVar = gamepad1.left_stick_x;
+
 //        while (robot.mrGyro.isCalibrating()){
 //
 //        }
@@ -48,12 +47,12 @@ public class StraferTeleOp extends OpMode {
             robot.strafeDiagonal("NE", gamepad1.right_trigger);
 
         } else if (gamepad1.left_stick_x != 0 && gamepad1.left_trigger != 0 && gamepad1.right_trigger == 0) {
-            turnVar = gamepad1.left_stick_x;
-            robot.betterTurn();
+
+            robot.betterTurn(gamepad1.left_stick_x);
 
         } else if (gamepad1.left_stick_x != 0 && gamepad1.left_trigger == 0 && gamepad1.right_trigger != 0) {
-            turnVar = gamepad1.left_stick_x;
-            robot.betterTurn();
+
+            robot.betterTurn(gamepad1.left_stick_x);
 
         } else if (gamepad1.left_trigger != 0 && !gamepad1.right_bumper && !gamepad1.left_bumper) {
 
@@ -77,9 +76,9 @@ public class StraferTeleOp extends OpMode {
 
         } //else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.a) {
             //robot.turnGyro(1,180);
-//        /*}*/ else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.b) {
-//                  robot.turnAngle(1,180);
-//        }
+        /*}*/ else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.b) {
+                  robot.turnAngle(1,180);
+        }
         else {
             robot.stop();
         }
