@@ -216,12 +216,16 @@ public class HardwareStrafer {
         if (turn < 0) {
             topLeftDrive.setPower(0);
             bottomLeftDrive.setPower(0);
-        }
-
-        if (turn > 0) {
+        }else if (turn > 0) {
             topRightDrive.setPower(0);
             bottomRightDrive.setPower(0);
+        } else{
+            topLeftDrive.setPower(1);
+            bottomLeftDrive.setPower(1);
+            topRightDrive.setPower(1);
+            bottomRightDrive.setPower(1);
         }
+
     }
 
 
