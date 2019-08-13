@@ -117,6 +117,8 @@ public class HardwareStrafer {
         stop();
     }
 
+
+
     public void strafeLeft(double power) {
 
         bottomLeftDrive.setPower(power);
@@ -210,19 +212,15 @@ public class HardwareStrafer {
 
     }
 
-    public void betterTurn(float power, float turn) {
-        float leftpower = power;
-        float rightpower = power;
+    public void betterTurn(float turn) {
         if (turn < 0) {
-            leftpower = leftpower + turn;
-            topLeftDrive.setPower(leftpower);
-            bottomLeftDrive.setPower(leftpower);
+            topLeftDrive.setPower(0);
+            bottomLeftDrive.setPower(0);
         }
 
         if (turn > 0) {
-            rightpower = rightpower - turn;
-            topRightDrive.setPower(rightpower);
-            bottomRightDrive.setPower(rightpower);
+            topRightDrive.setPower(0);
+            bottomRightDrive.setPower(0);
         }
     }
 
