@@ -31,6 +31,7 @@ public class HardwareStrafer {
     private DcMotor.RunMode initialMode;
 
     HardwareMap map;
+    StraferTeleOp strafer = new StraferTeleOp();
 
     public HardwareStrafer(DcMotor.RunMode enteredMode) {
 
@@ -212,7 +213,8 @@ public class HardwareStrafer {
 
     }
 
-    public void betterTurn(float turn) {
+    public void betterTurn() {
+        float turn = strafer.turnVar;
         if (turn < 0) {
             topLeftDrive.setPower(0);
             bottomLeftDrive.setPower(0);
