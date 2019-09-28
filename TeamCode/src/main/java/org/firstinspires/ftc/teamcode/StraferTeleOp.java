@@ -68,11 +68,11 @@ public class StraferTeleOp extends OpMode {
 
         }  else if (gamepad1.right_stick_x != 0 && gamepad1.left_trigger != 0 && gamepad1.right_trigger == 0) {
 
-            robot.turn(-gamepad1.left_trigger, gamepad1.right_stick_x);
+            robot.turn(-gamepad1.left_trigger, gamepad1.right_stick_x, gamepad1.right_stick_y);
 
         } else if (gamepad1.right_stick_x != 0 && gamepad1.left_trigger == 0 && gamepad1.right_trigger != 0) {
 
-            robot.turn(gamepad1.right_trigger, gamepad1.right_stick_x);
+            robot.turn(gamepad1.right_trigger, gamepad1.right_stick_x, gamepad1.right_stick_y);
 
         } //else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.a) {
             //robot.turnGyro(1,180);

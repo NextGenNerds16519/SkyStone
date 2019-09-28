@@ -235,19 +235,25 @@ public class HardwareStrafer {
 
         if(leftStick[0] > 0){
             if(frontLeft != 0 && backLeft != 0) {
-                frontLeft *= leftStick[0];
-                backLeft *= leftStick[0];
+                frontRight *= (1 - leftStick[0]);
+                backRight *= (1 - leftStick[0]);
             } else {
+                // Pivot
                 frontLeft = leftStick[0];
                 backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
             }
         } else if(leftStick[0] < 0){
             if(frontRight != 0 && backRight != 0){
-                frontRight *= leftStick[0];
-                backRight *= leftStick[0];
+                frontLeft *= (1 - leftStick[0]);
+                backLeft *= (1 - leftStick[0]);
             } else {
-                frontLeft = leftStick[0];
-                backLeft = leftStick[0];
+                // Pivot
+                frontLeft = -leftStick[0];
+                backLeft = -leftStick[0];
+                frontRight = leftStick[0];
+                backRight = leftStick[0];
             }
         }
         // Trigger controls y power
