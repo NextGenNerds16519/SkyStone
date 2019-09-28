@@ -225,6 +225,12 @@ public class HardwareStrafer {
         float frontRight = rightTrigger - leftTrigger;
         float backRight = rightTrigger - leftTrigger;
 
+        if(rightTrigger == 0 && leftTrigger == 0 && !rightBumper && !leftBumper && leftStick[0] == 0 && leftStick[1] == 0){
+            frontLeft = 0;
+            backLeft = 0;
+            frontRight = 0;
+            backRight = 0;
+        }
         if(rightBumper){
             strafeRight(1);
             return;
@@ -246,14 +252,15 @@ public class HardwareStrafer {
             }
         } else if(leftStick[0] < 0){
             if(frontRight != 0 && backRight != 0){
-                frontLeft *= (1 - leftStick[0]);
-                backLeft *= (1 - leftStick[0]);
+                frontLeft *= (1 + leftStick[0]);
+                backLeft *= (1 + leftStick[0]);
             } else {
                 // Pivot
-                frontLeft = -leftStick[0];
-                backLeft = -leftStick[0];
-                frontRight = leftStick[0];
-                backRight = leftStick[0];
+                // Note that leftStick[0] is currently positive
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
             }
         }
         // Trigger controls y power
