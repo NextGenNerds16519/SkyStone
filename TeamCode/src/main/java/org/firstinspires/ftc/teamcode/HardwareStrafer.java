@@ -200,15 +200,22 @@ public class HardwareStrafer {
 
     }
 
-    public void turn(float power, float turn) {
-
+    public void turn(float power, float dirx, float diry) {
+        // dirx 1 is right -1 is left
+        // diry 1 is forward -1 is backward
         power = power / 2;
-        turn = turn / 2;
 
-        bottomLeftDrive.setPower(power + turn);
-        bottomRightDrive.setPower(power - turn);
-        topLeftDrive.setPower(power + turn);
-        topRightDrive.setPower(power - turn);
+        float left = 0;
+        float right = 0;
+        if(dirx == 1){
+            left = 1;
+        } else if(dirx == -1){
+            right = 1;
+        }
+        bottomLeftDrive.setPower(power * diry * left);
+        bottomRightDrive.setPower(power * diry * right);
+        topLeftDrive.setPower(power * diry * left);
+        topRightDrive.setPower(power * diry * right);
 
     }
 
