@@ -219,6 +219,44 @@ public class HardwareStrafer {
 
     }
 
+    public void totalControl(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper){
+        float frontLeft = rightTrigger - leftTrigger;
+        float backLeft = rightTrigger - leftTrigger;
+        float frontRight = rightTrigger - leftTrigger;
+        float backRight = rightTrigger - leftTrigger;
+
+        if(rightBumper){
+            strafeRight(1);
+            return;
+        } else if(leftBumper){
+            strafeLeft(1);
+            return;
+        }
+
+        if(leftStick[0] > 0){
+            if(frontLeft != 0 && backLeft != 0) {
+                frontLeft *= leftStick[0];
+                backLeft *= leftStick[0];
+            } else {
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+            }
+        } else if(leftStick[0] < 0){
+            if(frontRight != 0 && backRight != 0){
+                frontRight *= leftStick[0];
+                backRight *= leftStick[0];
+            } else {
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+            }
+        }
+        // Trigger controls y power
+        // Left stick degree controls x movement power
+        bottomLeftDrive.setPower(backLeft);
+        bottomRightDrive.setPower(backRight);
+        topLeftDrive.setPower(frontLeft);
+        topRightDrive.setPower(frontRight);
+    }
     public void betterTurn(float turn) {
         if (turn < 0) {
             topLeftDrive.setPower(0);
