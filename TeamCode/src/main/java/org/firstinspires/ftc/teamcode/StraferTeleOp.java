@@ -18,70 +18,9 @@ public class StraferTeleOp extends OpMode {
     @Override
     public void loop(){
 
-//        while (robot.mrGyro.isCalibrating()){
-//
-//        }
+        float[] leftStick = {gamepad1.left_stick_x, gamepad1.left_stick_y};
 
-        if (gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0) {
-
-            robot.strafeLeft(0.75);
-
-        } else if (gamepad1.right_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0) {
-
-            robot.strafeRight(0.75);
-
-        } else if (gamepad1.left_trigger != 0 && gamepad1.left_bumper) {
-
-            robot.strafeDiagonal("SW", gamepad1.left_trigger);
-
-        } else if (gamepad1.left_trigger != 0 && gamepad1.right_bumper) {
-
-            robot.strafeDiagonal("SE", gamepad1.left_trigger);
-
-        } else if (gamepad1.right_trigger != 0 && gamepad1.left_bumper) {
-
-            robot.strafeDiagonal("NW", gamepad1.right_trigger);
-
-        } else if (gamepad1.right_trigger != 0 && gamepad1.right_bumper) {
-
-            robot.strafeDiagonal("NE", gamepad1.right_trigger);
-
-        } else if (gamepad1.left_stick_x != 0 && gamepad1.left_trigger != 0 && gamepad1.right_trigger == 0) {
-
-            robot.betterTurn(gamepad1.left_stick_x);
-
-        } else if (gamepad1.left_stick_x != 0 && gamepad1.left_trigger == 0 && gamepad1.right_trigger != 0) {
-
-            robot.betterTurn(gamepad1.left_stick_x);
-
-        } else if (gamepad1.left_trigger != 0 && !gamepad1.right_bumper && !gamepad1.left_bumper) {
-
-            robot.moveBackward(gamepad1.left_trigger);
-
-        } else if (gamepad1.right_trigger != 0 && !gamepad1.right_bumper && !gamepad1.left_bumper) {
-
-            robot.moveForward(gamepad1.right_trigger);
-
-        }  else if (gamepad1.left_stick_x != 0 && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0) {
-
-            robot.pivot(gamepad1.left_stick_x);
-
-        }  else if (gamepad1.right_stick_x != 0 && gamepad1.left_trigger != 0 && gamepad1.right_trigger == 0) {
-
-            robot.turn(-gamepad1.left_trigger, gamepad1.right_stick_x, gamepad1.right_stick_y);
-
-        } else if (gamepad1.right_stick_x != 0 && gamepad1.left_trigger == 0 && gamepad1.right_trigger != 0) {
-
-            robot.turn(gamepad1.right_trigger, gamepad1.right_stick_x, gamepad1.right_stick_y);
-
-        } //else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.a) {
-            //robot.turnGyro(1,180);
-        /*}*/ else if (!gamepad1.right_bumper && !gamepad1.left_bumper && gamepad1.left_trigger == 0 && gamepad1.right_trigger == 0 && gamepad1.left_stick_x == 0 && gamepad1.b) {
-                  robot.turnAngle(1,180);
-        }
-        else {
-            robot.stop();
-        }
+        robot.betterControls(gamepad1.right_trigger, gamepad1.left_trigger, leftStick, gamepad1.right_bumper, gamepad1.left_bumper);
 
         telemetry.addData("Top Left Pow", robot.topLeftDrive.getPower());
         telemetry.addData("Bottom Left Pow", robot.bottomLeftDrive.getPower());
