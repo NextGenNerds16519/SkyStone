@@ -27,7 +27,7 @@ public class StraferTeleOp extends OpMode {
 
         float[] leftStick = {gamepad1.left_stick_x, gamepad1.left_stick_y};
 
-        if (gamepad1.right_trigger == 0 && gamepad1.left_trigger == 0 && !gamepad1.left_bumper && !gamepad1.right_bumper && leftStick[0] == 0 && leftStick[1] == 0){
+        if (gamepad1.right_trigger == 0 && gamepad1.left_trigger == 0 && !gamepad1.left_bumper && !gamepad1.right_bumper && leftStick[0] == 0 && leftStick[1] == 0 && topRight!=0 && topLeft!=0 && bottomRight !=0 && bottomLeft != 0){
             robot.bottomLeftDrive.setPower(-bottomLeft);
             robot.bottomRightDrive.setPower(-bottomRight);
             robot.topLeftDrive.setPower(-topLeft);
