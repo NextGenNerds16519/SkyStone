@@ -251,12 +251,16 @@ public class HardwareStrafer {
 
         if (rightTrigger !=0 && rightBumper){
             strafeDiagonal("NE",1);
+            return;
         } else if (rightTrigger !=0 && leftBumper){
             strafeDiagonal("NW",1);
+            return;
         } else if (leftTrigger !=0 && rightBumper){
             strafeDiagonal("SE",1);
+            return;
         } else if (leftTrigger !=0 && leftBumper){
             strafeDiagonal("SW",1);
+            return;
         } else if(rightBumper){
             strafeRight(1);
             return;
