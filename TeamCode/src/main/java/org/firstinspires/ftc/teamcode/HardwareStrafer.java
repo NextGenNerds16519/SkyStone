@@ -173,24 +173,6 @@ public class HardwareStrafer {
         }
     }
 
-    public void moveForward(float power) {
-
-        bottomLeftDrive.setPower(power);
-        bottomRightDrive.setPower(power);
-        topLeftDrive.setPower(power);
-        topRightDrive.setPower(power);
-
-    }
-
-    public void moveBackward(float power) {
-
-        bottomLeftDrive.setPower(-power);
-        bottomRightDrive.setPower(-power);
-        topLeftDrive.setPower(-power);
-        topRightDrive.setPower(-power);
-
-    }
-
     public void pivot(float power) {
 
         bottomLeftDrive.setPower(power);
@@ -200,32 +182,123 @@ public class HardwareStrafer {
 
     }
 
-    public void turn(float power, float turn) {
 
-        power = power / 2;
-        turn = turn / 2;
 
-        bottomLeftDrive.setPower(power + turn);
-        bottomRightDrive.setPower(power - turn);
-        topLeftDrive.setPower(power + turn);
-        topRightDrive.setPower(power - turn);
+    public void totalControl(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper){
+        float frontLeft = rightTrigger - leftTrigger;
+        float backLeft = rightTrigger - leftTrigger;
+        float frontRight = rightTrigger - leftTrigger;
+        float backRight = rightTrigger - leftTrigger;
 
-    }
-
-    public void betterTurn(float turn) {
-        if (turn < 0) {
-            topLeftDrive.setPower(0);
-            bottomLeftDrive.setPower(0);
-        }else if (turn > 0) {
-            topRightDrive.setPower(0);
-            bottomRightDrive.setPower(0);
-        } else{
-            topLeftDrive.setPower(1);
-            bottomLeftDrive.setPower(1);
-            topRightDrive.setPower(1);
-            bottomRightDrive.setPower(1);
+        if(rightTrigger == 0 && leftTrigger == 0 && !rightBumper && !leftBumper && leftStick[0] == 0 && leftStick[1] == 0){
+            frontLeft = 0;
+            backLeft = 0;
+            frontRight = 0;
+            backRight = 0;
+        }
+        if(rightBumper){
+            strafeRight(1);
+            return;
+        } else if(leftBumper){
+            strafeLeft(1);
+            return;
         }
 
+        if(leftStick[0] > 0){
+            if(frontLeft != 0 && backLeft != 0) {
+                frontRight *= (1 - leftStick[0]);
+                backRight *= (1 - leftStick[0]);
+            } else {
+                // Pivot
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
+            }
+        } else if(leftStick[0] < 0){
+            if(frontRight != 0 && backRight != 0){
+                frontLeft *= (1 + leftStick[0]);
+                backLeft *= (1 + leftStick[0]);
+            } else {
+                // Pivot
+                // Note that leftStick[0] is currently positive
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
+            }
+        }
+        // Trigger controls y power
+        // Left stick degree controls x movement power
+        bottomLeftDrive.setPower(backLeft);
+        bottomRightDrive.setPower(backRight);
+        topLeftDrive.setPower(frontLeft);
+        topRightDrive.setPower(frontRight);
+    }
+
+
+
+
+    public void betterControls(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper){
+        float frontLeft = rightTrigger - leftTrigger;
+        float backLeft = rightTrigger - leftTrigger;
+        float frontRight = rightTrigger - leftTrigger;
+        float backRight = rightTrigger - leftTrigger;
+
+        if(rightTrigger == 0 && leftTrigger == 0 && !rightBumper && !leftBumper && leftStick[0] == 0 && leftStick[1] == 0){
+            stop();
+        }
+
+        if (rightTrigger !=0 && rightBumper){
+            strafeDiagonal("NE",1);
+            return;
+        } else if (rightTrigger !=0 && leftBumper){
+            strafeDiagonal("NW",1);
+            return;
+        } else if (leftTrigger !=0 && rightBumper){
+            strafeDiagonal("SE",1);
+            return;
+        } else if (leftTrigger !=0 && leftBumper){
+            strafeDiagonal("SW",1);
+            return;
+        } else if(rightBumper){
+            strafeRight(1);
+            return;
+        } else if(leftBumper){
+            strafeLeft(1);
+            return;
+        }
+
+        if(leftStick[0] > 0){
+            if(frontLeft != 0 && backLeft != 0) {
+                frontRight *= (1 - leftStick[0]);
+                backRight *= (1 - leftStick[0]);
+            } else {
+                // Pivot
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
+            }
+        } else if(leftStick[0] < 0){
+            if(frontRight != 0 && backRight != 0){
+                frontLeft *= (1 + leftStick[0]);
+                backLeft *= (1 + leftStick[0]);
+            } else {
+                // Pivot
+                // Note that leftStick[0] is currently positive
+                frontLeft = leftStick[0];
+                backLeft = leftStick[0];
+                frontRight = -leftStick[0];
+                backRight = -leftStick[0];
+            }
+        }
+        // Trigger controls y power
+        // Left stick degree controls x movement power
+        bottomLeftDrive.setPower(backLeft);
+        bottomRightDrive.setPower(backRight);
+        topLeftDrive.setPower(frontLeft);
+        topRightDrive.setPower(frontRight);
     }
 
 
