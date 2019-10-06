@@ -282,5 +282,129 @@ public class HardwareStrafer {
         topRightDrive.setPower(0);
     }
 
+    public void moveBackwards (int power, long time){
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(-power);
+        try {
+            sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
+        topRightDrive.setPower(0);
+    }
+
+    public void strafeLeftAuto(int power, long time) {
+
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(-power);
+        topLeftDrive.setPower(-power);
+        topRightDrive.setPower(power);
+        try {
+            sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
+        topRightDrive.setPower(0);
+
+    }
+
+    public void strafeRightAuto(int power,long time) {
+
+        bottomLeftDrive.setPower(-power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(-power);
+        try {
+            sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
+        topRightDrive.setPower(0);
+
+    }
+
+    public void strafeDiagonal(String direction, int power, long time) {
+        switch (direction) {
+            case "NE":
+
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(power);
+                topLeftDrive.setPower(power);
+                topRightDrive.setPower(0);
+                try {
+                    sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(0);
+                break;
+
+            case "SE":
+
+                bottomLeftDrive.setPower(-power);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(-power);
+                try {
+                    sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(0);
+                break;
+
+            case "SW":
+
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(-power);
+                topLeftDrive.setPower(-power);
+                topRightDrive.setPower(0);
+                try {
+                    sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(0);
+                break;
+
+            case "NW":
+
+                bottomLeftDrive.setPower(power);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(power);
+                try {
+                    sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                bottomLeftDrive.setPower(0);
+                bottomRightDrive.setPower(0);
+                topLeftDrive.setPower(0);
+                topRightDrive.setPower(0);
+                break;
+        }
+    }
+
 }
 
