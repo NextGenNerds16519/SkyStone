@@ -14,8 +14,8 @@ public class BuildingMatMovementAutonomous extends LinearOpMode {
         robot.init(hardwareMap);
         waitForStart();
         robot.moveForward(1,1500);
-        robot.strafeLeftAuto(1,1000);
-        robot.moveBackwards(1,1000);
+        robot.strafeLeftAuto(1,750);
+        robot.moveBackwards(1,2000);
 
     }
 }
