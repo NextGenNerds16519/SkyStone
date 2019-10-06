@@ -20,7 +20,7 @@ public class HardwareStrafer {
     public DcMotor topLeftDrive;
     public DcMotor topRightDrive;
     public Orientation angle;
-    public Servo Puller;
+    public Servo puller;
 
 
     private DcMotor.RunMode initialMode;
@@ -42,7 +42,7 @@ public class HardwareStrafer {
         imu = map.get(BNO055IMU.class, "imu");
         topLeftDrive = map.dcMotor.get("topLeftDrive");
         topRightDrive = map.dcMotor.get("topRightDrive");
-        Puller = map.servo.get("Puller");
+        puller = map.servo.get("puller");
 
         //Encoders
         bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -284,9 +284,9 @@ public class HardwareStrafer {
         }
 
         while(yButton){
-            double x = Puller.getPosition();
+            double x = puller.getPosition();
             x+=180;
-            Puller.setPosition(x);
+            puller.setPosition(x);
         }
 
         // Trigger controls y power
