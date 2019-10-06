@@ -283,7 +283,7 @@ public class HardwareStrafer {
             }
         }
 
-        while(yButton){
+        if(yButton){
             double x = puller.getPosition();
             x+=180;
             puller.setPosition(x);
