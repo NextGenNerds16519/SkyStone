@@ -228,12 +228,11 @@ public class HardwareStrafer {
 
 
 
-    public void betterControls(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper, boolean yButton){
+    public void betterControls(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper, boolean yButton, boolean bButton){
         float frontLeft = rightTrigger - leftTrigger;
         float backLeft = rightTrigger - leftTrigger;
         float frontRight = rightTrigger - leftTrigger;
         float backRight = rightTrigger - leftTrigger;
-
         if(rightTrigger == 0 && leftTrigger == 0 && !rightBumper && !leftBumper && leftStick[0] == 0 && leftStick[1] == 0){
             stop();
         }
@@ -284,8 +283,11 @@ public class HardwareStrafer {
         }
 
         if(yButton){
-            puller.setPosition(1);
+            puller.setPosition(0);
+        }else if(bButton){
+            puller.setPosition(0.5);
         }
+
 
         // Trigger controls y power
         // Left stick degree controls x movement power
