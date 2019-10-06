@@ -45,8 +45,10 @@ public class NeilsAutoOp extends OpMode {
         robot.topLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.topRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        move(power);
+
         while(robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy()){
-            
+
         }
     }
     public void move(float power) {
