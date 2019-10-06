@@ -12,6 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+import static java.lang.Thread.sleep;
+
 public class HardwareStrafer {
 
     public DcMotor bottomLeftDrive;
@@ -92,22 +94,6 @@ public class HardwareStrafer {
         return angle.firstAngle;
     }
 
-    public void turnAngle(float power, int degrees){
-        float heading = getAngle();
-        float target = heading + degrees;
-        while (Math.abs(getAngle()-target)>3) {
-
-            if (getAngle() > target) {
-                pivot(power);
-            } else if (getAngle() < target) {
-                pivot(-power);
-            }
-        }
-        stop();
-    }
-
-
-
     public void strafeLeft(double power) {
 
         bottomLeftDrive.setPower(power);
@@ -161,17 +147,6 @@ public class HardwareStrafer {
                 break;
         }
     }
-
-    public void pivot(float power) {
-
-        bottomLeftDrive.setPower(power);
-        bottomRightDrive.setPower(-power);
-        topLeftDrive.setPower(power);
-        topRightDrive.setPower(-power);
-
-    }
-
-
 
     public void totalControl(float rightTrigger, float leftTrigger, float[] leftStick, boolean rightBumper, boolean leftBumper){
         float frontLeft = rightTrigger - leftTrigger;
@@ -282,19 +257,21 @@ public class HardwareStrafer {
             }
         }
 
-//        if(yButton){
-//            puller.setPosition(0);
-//        }else if(bButton){
-//            puller.setPosition(0.5);
-//        }
-
-
         // Trigger controls y power
         // Left stick degree controls x movement power
         bottomLeftDrive.setPower(backLeft);
         bottomRightDrive.setPower(backRight);
         topLeftDrive.setPower(frontLeft);
         topRightDrive.setPower(frontRight);
+    }
+
+
+    public void moveForward throws InterruptedException(float power, long time){
+        bottomLeftDrive.setPower(power);
+        bottomRightDrive.setPower(power);
+        topLeftDrive.setPower(power);
+        topRightDrive.setPower(power);
+        sleep(time);
     }
 
 }
