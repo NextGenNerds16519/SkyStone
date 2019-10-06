@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,23 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 @Autonomous (name = "NeilsAutoOp", group = "Neil")
-public class NeilsAutoOp extends OpMode {
+public class NeilsAutoOp extends LinearOpMode {
 
     HardwareStraferBasic robot = new HardwareStraferBasic(DcMotor.RunMode.RUN_USING_ENCODER);
-
-    @Override
-    public void init() {
-
-        robot.init(hardwareMap);
-
-    }
-
-    @Override
-    public void loop() {
-
-        moveDistance(1, 10);
-
-    }
 
     public void moveDistance(float power, int distance){
         //Reset Encoders
@@ -60,4 +47,9 @@ public class NeilsAutoOp extends OpMode {
 
     }
 
+    @Override
+    public void runOpMode() throws InterruptedException {
+        robot.init(hardwareMap);
+        moveDistance(1, 100);
+    }
 }
