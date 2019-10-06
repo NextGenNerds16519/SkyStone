@@ -18,7 +18,7 @@ public class TariniTeleOp extends OpMode {
     @Override
     public void loop() {
         if (gamepad1.left_bumper && gamepad1.right_bumper){
-                robot.moveForward(34);
+               // robot.moveForward(34);
         }
 
     }
