@@ -50,6 +50,6 @@ public class NeilsAutoOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
-        moveDistance(1, 100);
+        moveDistance(1, 3846);
     }
 }
