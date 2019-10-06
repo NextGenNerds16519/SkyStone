@@ -266,12 +266,20 @@ public class HardwareStrafer {
     }
 
 
-    public void moveForward throws InterruptedException(float power, long time){
+    public void moveForward (int power, long time){
         bottomLeftDrive.setPower(power);
         bottomRightDrive.setPower(power);
         topLeftDrive.setPower(power);
         topRightDrive.setPower(power);
-        sleep(time);
+        try {
+            sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(0);
+        topLeftDrive.setPower(0);
+        topRightDrive.setPower(0);
     }
 
 }
