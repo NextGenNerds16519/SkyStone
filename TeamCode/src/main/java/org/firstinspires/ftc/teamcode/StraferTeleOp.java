@@ -22,7 +22,7 @@ public class StraferTeleOp extends OpMode {
         float[] leftStick = {gamepad1.left_stick_x, gamepad1.left_stick_y};
 
 
-        robot.betterControls(gamepad1.right_trigger, gamepad1.left_trigger, leftStick, gamepad1.right_bumper, gamepad1.left_bumper, gamepad1.y,gamepad1.b);
+        robot.betterControls(gamepad1.right_trigger, gamepad1.left_trigger, leftStick, gamepad1.right_bumper, gamepad1.left_bumper/*, gamepad1.y,gamepad1.b*/);
 
         telemetry.addData("Top Left Pow", robot.topLeftDrive.getPower());
         telemetry.addData("Bottom Left Pow", robot.bottomLeftDrive.getPower());
