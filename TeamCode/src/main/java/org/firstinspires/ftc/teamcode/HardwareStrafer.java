@@ -284,9 +284,7 @@ public class HardwareStrafer {
         }
 
         if(yButton){
-            double x = puller.getPosition();
-            x+=180;
-            puller.setPosition(x);
+            puller.setPosition(1);
         }
 
         // Trigger controls y power
