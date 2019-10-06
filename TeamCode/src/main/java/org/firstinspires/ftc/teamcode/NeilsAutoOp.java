@@ -22,7 +22,7 @@ public class NeilsAutoOp extends OpMode {
     @Override
     public void loop() {
 
-        moveDistance(1, 10);''
+        moveDistance(1, 10);
 
     }
 
@@ -45,7 +45,9 @@ public class NeilsAutoOp extends OpMode {
         robot.topLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.topRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while(robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy())
+        while(robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy()){
+            
+        }
     }
     public void move(float power) {
 
