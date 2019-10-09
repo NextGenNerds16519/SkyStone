@@ -8,12 +8,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous (name = "NeilsAutoOp", group = "Neil")
+@Autonomous(name = "NeilsAutoOp", group = "Neil")
 public class NeilsAutoOp extends LinearOpMode {
 
     HardwareStraferBasic robot = new HardwareStraferBasic(DcMotor.RunMode.RUN_USING_ENCODER);
 
-    public void moveDistance(float power, int distance){
+    public void moveDistance(float power, int distance) {
+        distance = (int) (384.6 * 27.4 * (distance / (3.93701 * Math.PI))); // converts inches into rotations
         //Reset Encoders
         robot.bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.bottomRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -34,10 +35,11 @@ public class NeilsAutoOp extends LinearOpMode {
 
         move(power);
 
-        while(robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy()){
+        while (robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy()) {
 
         }
     }
+
     public void move(float power) {
 
         robot.bottomLeftDrive.setPower(power);
@@ -50,6 +52,7 @@ public class NeilsAutoOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
-        moveDistance(1, 3846);
+        moveDistance(0.5f, 120);
+        moveDistance(-0.5f, -120);
     }
 }
