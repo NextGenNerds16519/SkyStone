@@ -334,7 +334,7 @@ public class HardwareStrafer {
 
     }
 
-    public void moveDistance(float power, int distanceFeet) {
+    public void moveDistance(float power, double distanceFeet) {
 
         distanceFeet = distanceFeet * 12;
 
@@ -360,7 +360,11 @@ public class HardwareStrafer {
         moveForward(power,0);
 
         while (bottomLeftDrive.isBusy() && bottomRightDrive.isBusy() && topLeftDrive.isBusy() && topRightDrive.isBusy()) {
-
+            try {
+                sleep(0);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
