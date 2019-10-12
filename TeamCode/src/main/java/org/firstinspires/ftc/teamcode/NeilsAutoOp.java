@@ -11,48 +11,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 @Autonomous(name = "NeilsAutoOp", group = "Neil")
 public class NeilsAutoOp extends LinearOpMode {
 
-    HardwareStraferBasic robot = new HardwareStraferBasic(DcMotor.RunMode.RUN_USING_ENCODER);
-
-    public void moveDistance(float power, int distance) {
-        distance = (int) (384.6 * 27.4 * (distance / (3.93701 * Math.PI))); // converts inches into rotations
-        //Reset Encoders
-        robot.bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.bottomRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.topLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.topRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //Set target position
-        robot.bottomLeftDrive.setTargetPosition(distance);
-        robot.bottomRightDrive.setTargetPosition(distance);
-        robot.topLeftDrive.setTargetPosition(distance);
-        robot.topRightDrive.setTargetPosition(distance);
-
-        //Set mode run to position
-        robot.bottomLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.bottomRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.topLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.topRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        move(power);
-
-        while (robot.bottomLeftDrive.isBusy() && robot.bottomRightDrive.isBusy() && robot.topLeftDrive.isBusy() && robot.topRightDrive.isBusy()) {
-
-        }
-    }
-
-    public void move(float power) {
-
-        robot.bottomLeftDrive.setPower(power);
-        robot.bottomRightDrive.setPower(power);
-        robot.topLeftDrive.setPower(power);
-        robot.topRightDrive.setPower(power);
-
-    }
+    NeilsTestingHardwareStrafer robot = new NeilsTestingHardwareStrafer(DcMotor.RunMode.RUN_USING_ENCODER);
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
-        moveDistance(0.5f, 120);
-        moveDistance(-0.5f, -120);
+        float power = 0.25f;
+        robot.moveDistance(power, 12);
+        robot.moveDistance(-power, -12);
     }
 }
