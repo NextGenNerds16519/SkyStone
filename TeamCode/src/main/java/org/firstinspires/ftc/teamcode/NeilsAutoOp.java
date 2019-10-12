@@ -11,13 +11,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 @Autonomous(name = "NeilsAutoOp", group = "Neil")
 public class NeilsAutoOp extends LinearOpMode {
 
-    NeilsTestingHardwareStrafer robot = new NeilsTestingHardwareStrafer(DcMotor.RunMode.RUN_USING_ENCODER);
+    NeilsTestingHardwareStrafer robot = new NeilsTestingHardwareStrafer(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         float power = 0.25f;
-        robot.moveDistance(power, 12);
-        robot.moveDistance(-power, -12);
+        double distanceInInches = 24;
+        waitForStart();
+        robot.moveDistance(power, distanceInInches);
+        robot.stop();
     }
 }

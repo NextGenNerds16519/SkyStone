@@ -106,6 +106,10 @@ public class NeilsTestingHardwareStrafer {
         topRightDrive.setMode(runMode);
     }
 
+    public int getTicksNeeded(double distance) {
+        return (int) (distance / 12.36 * 27.4 * 384.6); // converts inches into rotations
+    }
+
     public void move(double power) {
         bottomLeftDrive.setPower(power);
         bottomRightDrive.setPower(power);
@@ -113,9 +117,10 @@ public class NeilsTestingHardwareStrafer {
         topRightDrive.setPower(power);
     }
 
-    public void moveDistance(float power, int distance) {
-        distance = (int) (384.6 * 27.4 * (distance / (3.93701 * 3.14))); // converts inches into rotations
+    public void moveDistance(float power, double distanceInInches) {
         //Reset Encoders
+        int distance = getTicksNeeded(distanceInInches);
+
         setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set target position
@@ -124,14 +129,15 @@ public class NeilsTestingHardwareStrafer {
         topLeftDrive.setTargetPosition(distance);
         topRightDrive.setTargetPosition(distance);
 
-        //Set mode run to position
         setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         move(power);
 
-        while (bottomLeftDrive.isBusy() && bottomRightDrive.isBusy() && topLeftDrive.isBusy() && topRightDrive.isBusy()) {
+        while (bottomLeftDrive.isBusy() || bottomRightDrive.isBusy() || topLeftDrive.isBusy() || topRightDrive.isBusy()) {
 
         }
+        stop();
+        setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void strafeLeft(double power) {

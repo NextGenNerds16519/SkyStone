@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 @TeleOp(name = "StraferTeleOp", group = "Final")
 public class StraferTeleOp extends OpMode {
 
-    HardwareStrafer robot = new HardwareStrafer(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    HardwareStrafer robot = new HardwareStrafer(DcMotor.RunMode.RUN_USING_ENCODER);
 
     @Override
     public void init(){
