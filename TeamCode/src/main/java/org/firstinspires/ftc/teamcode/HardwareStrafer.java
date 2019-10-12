@@ -334,7 +334,7 @@ public class HardwareStrafer {
 
     }
 
-    public void moveDistance(float power, int distanceFeet) {
+    public void moveDistance(float power, double distanceFeet) {
 
         distanceFeet = distanceFeet * 12;
 
