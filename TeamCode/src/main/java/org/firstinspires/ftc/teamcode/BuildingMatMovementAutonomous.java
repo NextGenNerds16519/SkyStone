@@ -13,9 +13,9 @@ public class BuildingMatMovementAutonomous extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         waitForStart();
-        robot.moveForward(1,1500);
+        robot.moveDistance(1,6);
         robot.strafeLeftAuto(1,750);
-        robot.moveBackwards(1,2000);
+        robot.moveDistance(-1,4);
 
     }
 }

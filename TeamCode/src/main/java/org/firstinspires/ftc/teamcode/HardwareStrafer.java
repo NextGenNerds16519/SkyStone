@@ -266,7 +266,7 @@ public class HardwareStrafer {
     }
 
 
-    public void moveForward (int power, long time){
+    public void moveForward (float power, long time){
         bottomLeftDrive.setPower(power);
         bottomRightDrive.setPower(power);
         topLeftDrive.setPower(power);
@@ -332,6 +332,36 @@ public class HardwareStrafer {
         topLeftDrive.setPower(0);
         topRightDrive.setPower(0);
 
+    }
+
+    public void moveDistance(float power, int distanceFeet) {
+
+        distanceFeet = distanceFeet * 12;
+
+        int distance = (int) (384.6 * 27.4 * (distanceFeet / (3.93701 * Math.PI))); // converts inches into rotations
+        //Reset Encoders
+        bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bottomRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        topLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        topRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set target position
+        bottomLeftDrive.setTargetPosition(distance);
+        bottomRightDrive.setTargetPosition(distance);
+        topLeftDrive.setTargetPosition(distance);
+        topRightDrive.setTargetPosition(distance);
+
+        //Set mode run to position
+        bottomLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        bottomRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        topLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        topRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        moveForward(power,0);
+
+        while (bottomLeftDrive.isBusy() && bottomRightDrive.isBusy() && topLeftDrive.isBusy() && topRightDrive.isBusy()) {
+
+        }
     }
 
     public void strafeDiagonal(String direction, int power, long time) {
