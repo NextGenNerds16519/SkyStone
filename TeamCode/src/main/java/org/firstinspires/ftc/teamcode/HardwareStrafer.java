@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -22,7 +23,11 @@ public class HardwareStrafer {
     public DcMotor topLeftDrive;
     public DcMotor topRightDrive;
     public Orientation angle;
-    public Servo puller;
+    public Servo pusher;
+    public Servo rightGrabber;
+    public Servo leftGrabber;
+    public Servo blockGrabber;
+    public ColorSensor color;
 
 
     private DcMotor.RunMode initialMode;
@@ -44,7 +49,11 @@ public class HardwareStrafer {
         imu = map.get(BNO055IMU.class, "imu");
         topLeftDrive = map.dcMotor.get("topLeftDrive");
         topRightDrive = map.dcMotor.get("topRightDrive");
-        puller = map.servo.get("puller");
+        pusher = map.servo.get("pusher");
+        rightGrabber = map.servo.get("rightGrabber");
+        leftGrabber = map.servo.get("leftGrabber");
+        blockGrabber = map.servo.get("lockGrabber");
+        color = map.colorSensor.get("colorSensor");
 
         //Encoders
         bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -334,11 +343,11 @@ public class HardwareStrafer {
 
     }
 
-    public void moveDistance(float power, double distanceFeet) {
+    public void moveDistance(float power, double inches) {
 
-        distanceFeet = distanceFeet * 12;
+        inches = inches * 12;
 
-        int distance = (int) (384.6 * 27.4 * (distanceFeet / (3.93701 * Math.PI))); // converts inches into rotations
+        int distance = (int) (384.6 * 27.4 * (inches / (3.93701 * Math.PI))); // converts inches into rotations
         //Reset Encoders
         bottomLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bottomRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -440,5 +449,34 @@ public class HardwareStrafer {
         }
     }
 
+    public void grabMat(){
+        normalizePos(leftGrabber);
+        normalizePos(rightGrabber);
+        leftGrabber.setPosition(180);
+        rightGrabber.setPosition(180);
+    }
+
+    public void releaseMat(){
+        normalizePos(leftGrabber);
+        normalizePos(rightGrabber);
+        leftGrabber.setPosition(0);
+        rightGrabber.setPosition(1);
+    }
+
+    private void normalizePos(Servo s){
+        double pos = s.getPosition();
+        while(pos <= -360){
+            pos += 360;
+        }
+        while(pos >= 360){
+            pos -= 360;
+        }
+        s.setPosition(pos);
+    }
+
+    public int[] getLineColor(){
+        int[] line = {color.red(), color.blue(), color.green()};
+        return line;
+    }
 }
 
